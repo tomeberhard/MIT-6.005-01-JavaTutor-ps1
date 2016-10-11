@@ -78,6 +78,14 @@ public class QuadraticTest {
         int r2 = -45_000;
         assertEquals(makeSet(r1, r2), Quadratic.roots(1, -r1-r2, r1*r2));
     }
+    
+    // covers scenario when a = 0
+    // 23x + 46 = 0 
+    @Test
+    public void testAEqualsZero() {
+        int r1 = -2;
+        assertEquals(makeSet(r1), Quadratic.roots(0,  23,  46));
+    }
 
     // returns a set of the integers passed as parameters
     private static Set<Integer> makeSet(int... elements) {
