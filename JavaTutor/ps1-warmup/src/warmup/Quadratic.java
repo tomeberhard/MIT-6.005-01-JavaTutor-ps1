@@ -18,15 +18,63 @@ public class Quadratic {
         
         Set<Integer> roots = new HashSet<Integer>();
         
-        // TODO: deal with a == 0
+        // deal with special cases 
+        if ((a==0) && (b==0)) {                    // 0 0 1
+                // we asserted earlier that c!=0, so the equation c=0 has no solution, return empty set
+                return roots;
+        }
+        else if ((a==0) && (b!=0) && (c==0)) {     // 0 1 0 
+            // bx = 0 only holds for x=0. 
+            roots.add(0);
+            return roots;            
+        } 
+        else if ((a==0) && (b!=0) && (c!=0)) {     // 0 1 1 
+            // bx + c = 0 --> x = -c/b
+            int root = -c / b;
+            // only add the root as a solution if it's an integer
+            if ( b*root+c == 0) {
+                roots.add(root);
+            }
+            return roots;
+        }
+        else if ((a!=0) && (b==0) && (c==0)) {     // 1 0 0
+            // ax^2 = 0 only holds for x=0
+            roots.add(0);
+            return roots;
+        }
+        else if ((a!=0) && (b==0) && (c!=0)) {     // 1 0 1
+            // ax^2 + c = 0 --> only has solutions if (-c/a)>0
+            int rightSide = -c/a;
+            if ( 0 < rightSide ) {
+                rightSide = (int)Math.sqrt(rightSide);
+                // check it
+                if (a*rightSide*rightSide + c == 0) {
+                    roots.add(rightSide);
+                }
+            }
+            return roots;
+        }
+        else if ((a!=0) && (b==0) && (c!=0)) {     // 1 1 0
+            // ax^2 + bx = 0 ==> x(ax+b) ==> has solutions x=0, x=-b/a
+            roots.add(0);
+            int rightSide = -b/a;
+            // check it
+            if (a*rightSide+b == 0) {
+                roots.add(rightSide);
+            }
+            return roots;
+        }
         
+                
         // attempt using the quadratic formula
         // x = (-b +/- sqrt(b^2 - 4ac)) / 2a
         
-        
         double bminus4ac = ((double)b*(double)b - (4.0 * (double)a * (double)c));
 
-        // TODO: deal with bminus4ac < 0
+        // deal with bminus4ac < 0
+        if (bminus4ac < 0) {
+            return roots;
+        }
         
         long r1 = ((long)-b + (long)Math.sqrt(bminus4ac)) / (2 * (long)a);
         long r2 = ((long)-b - (long)Math.sqrt(bminus4ac)) / (2 * (long)a);
