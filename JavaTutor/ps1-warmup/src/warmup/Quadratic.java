@@ -1,6 +1,9 @@
 package warmup;
 
 import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+
 import java.util.HashSet;
 
 public class Quadratic {
@@ -50,6 +53,7 @@ public class Quadratic {
                 // check it
                 if (a*rightSide*rightSide + c == 0) {
                     roots.add(rightSide);
+                    roots.add(-rightSide);
                 }
             }
             return roots;
@@ -93,7 +97,7 @@ public class Quadratic {
     public static void main(String[] args) {
         System.out.println("For the equation x^2 - 4x + 3 = 0, the possible solutions are:");
         Set<Integer> result = roots(1, -4, 3);
-        System.out.println(result);
+        System.out.println(result);        
     }
 
     /* Copyright (c) 2016 MIT 6.005 course staff, all rights reserved.
