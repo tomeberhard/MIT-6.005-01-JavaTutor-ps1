@@ -12,7 +12,27 @@ public class Quadratic {
      * @return all integers x such that ax^2 + bx + c = 0.
      */
     public static Set<Integer> roots(int a, int b, int c) {
-        throw new RuntimeException("not implemented yet;"); // TODO: delete this line when you implement it
+        assert(!((a==0 && (b==0) && (c==0))));
+        
+        Set<Integer> roots = new HashSet<Integer>();
+        
+        // TODO: deal with a == 0
+        
+        // attempt using the quadratic formula
+        // x = (-b +/- sqrt(b^2 - 4ac)) / 2a
+        
+        
+        double bminus4ac = ((double)b*(double)b - (4.0 * (double)a * (double)c));
+
+        // TODO: deal with bminus4ac < 0
+        
+        long r1 = ((long)-b + (long)Math.sqrt(bminus4ac)) / (2 * (long(a));
+        long r2 = ((long)-b - (long)Math.sqrt(bminus4ac)) / (2 * (long(a));
+
+        roots.add(r1);
+        roots.add(r2);
+        
+        return roots;
     }
 
     
