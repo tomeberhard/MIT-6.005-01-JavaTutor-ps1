@@ -82,10 +82,40 @@ public class QuadraticTest {
     // covers scenario when a = 0
     // 23x + 46 = 0 
     @Test
-    public void testAEqualsZero() {
+    public void ztestAEqualsZero() {
         int r1 = -2;
         assertEquals(makeSet(r1), Quadratic.roots(0,  23,  46));
     }
+    
+    // FINAL Tests from MIT
+    /*
+     * Additional testing strategy
+     * Partitions:
+     *    a=0
+     *    roots are integer, real, or complex
+     * 
+     * Each of these parts is covered by at least one test case below.
+     */
+
+    // covers a=0
+    @Test
+    public void testOneDegenerateRoot() {
+        assertEquals(makeSet(3), Quadratic.roots(0, -5, 5*3));
+    }
+    
+    // covers both roots real but not integers
+    @Test
+    public void testRealRoots() {
+        // roots are 1/2 and 1/3
+        assertEquals(makeSet(), Quadratic.roots(6, -5, 1));
+    }
+    
+    // covers both roots complex but not integers
+    @Test
+    public void testComplexRoots() {
+        assertEquals(makeSet(), Quadratic.roots(1, -2, 2));
+    }
+
 
     // returns a set of the integers passed as parameters
     private static Set<Integer> makeSet(int... elements) {

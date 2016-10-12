@@ -80,11 +80,27 @@ public class Quadratic {
             return roots;
         }
         
-        long r1 = ((long)-b + (long)Math.sqrt(bminus4ac)) / (2 * (long)a);
+        double squareRootTerm = Math.sqrt(bminus4ac);
+        
+        double realRoot;
+        double epsilon = 0.000001;
+        double error;
+        
+        long r1 = ((long)-b + (long)squareRootTerm) / (2 * (long)a);
+        // check that a real root wasn't truncated
+        realRoot = ((double)-b + squareRootTerm) / (2.0 * (double)a);
+        error = Math.abs(realRoot - (double)r1);
+        if ( error < epsilon ) {
+            roots.add((int)r1);
+        }
+        
         long r2 = ((long)-b - (long)Math.sqrt(bminus4ac)) / (2 * (long)a);
-
-        roots.add((int)r1);
-        roots.add((int)r2);
+        // check that a real root wasn't truncated
+        realRoot = ((double)-b - squareRootTerm) / (2.0 *(double)a);
+        error = Math.abs(realRoot-(double)r2);
+        if ((error < epsilon) && (r1 != r2)) {
+            roots.add((int)r2);
+        }
         
         return roots;
     }
